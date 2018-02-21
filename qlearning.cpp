@@ -18,7 +18,7 @@ using namespace mlpack::ann; // namespace for artificial neural network
 using namespace mlpack::optimization; //using adam optimizer . Various others are difined in mlpack
 using namespace mlpack::rl; // for reinforcement leanring
 
-#include <boost/test/unit_test.hpp>
+// #include <boost/test/unit_test.hpp>
 // #include "test_tools.hpp"
 using namespace std; //
 int main(int argc, char const *argv[])
@@ -67,8 +67,8 @@ int main(int argc, char const *argv[])
 		double epi_return = agent.Episode();
 		averageReturn(epi_return);
 		episode = episode + 1;
-	    Log::Debug << "Average return: " << averageReturn.mean()<< " Episode return: " << epi_return<< std::endl;
-	    // std::cout << "Average return: " << averageReturn.mean()<< " Episode return: " << epi_return<< std::endl;
+	    // Log::Debug << "Average return: " << averageReturn.mean()<< " Episode return: " << epi_return<< std::endl;
+	    std::cout << "Average return: " << averageReturn.mean()<< " Episode return: " << epi_return<< std::endl;
 	    if (averageReturn.mean() > requirement)
 	    {
 	    	agent.Deterministic() = true;
@@ -77,9 +77,9 @@ int main(int argc, char const *argv[])
 	    	for (size_t i = 0; i < 20; ++i)// 20 test runs
 		        testReturn(agent.Episode()); // variable defined above
 
-		    Log::Debug << "Average return in deterministic test: "<< testReturn.mean() << std::endl;
+		    // Log::Debug << "Average return in deterministic test: "<< testReturn.mean() << std::endl;
 		    // std::cout << "Average return in deterministic test: "<< testReturn.mean() << std::endl;
-		    std::cout << "Converged" << endl;
+		    std::cout << endl <<"Converged with return " <<  testReturn.mean()  << " with number of " << episode << " iterations"<<endl;
 		    break;
 	    }	
 	    // check converged or not?
@@ -89,7 +89,5 @@ int main(int argc, char const *argv[])
 		// Log::Debug << "Cart Pole with DQN failed to converge in " << maxiter << " iterations." <<std::endl;
 		std::cout << "Cart Pole with DQN failed to converge in " << maxiter << " iterations." <<std::endl;
 	}
-	/* code */
-	std::cout << 'a' << endl;
 	return 0;
 }
