@@ -20,7 +20,7 @@ using namespace mlpack::rl; // for reinforcement leanring
 using namespace std; 
 int main(int argc, char const *argv[])
 {
-	
+	const clock_t begin_time = clock();	// to calculate time difference
 	// FFN stands for feed forward network . Our network takes 4 input from the observation space. 
 	// This takes Cart position, Cart Velocity , Pole Angle and Pole's tip Velocity. 
 	// You may refer to https://github.com/openai/gym/wiki/CartPole-v0 for more details.
@@ -69,9 +69,9 @@ int main(int argc, char const *argv[])
 
 
 	arma::running_stat<double> averageReturn;
-    size_t episode = 0;
-    size_t maxiter = 1000;
-    size_t requirement = 50; // This variable checks if the game is converging or not .
+	size_t episode = 0;
+	size_t maxiter = 1000;
+	size_t requirement = 50; // This variable checks if the game is converging or not .
 	// References for armadillo running_stat : http://arma.sourceforge.net/docs.html#running_stat
 	int i = 0;
 	while ( episode <= maxiter)
@@ -97,5 +97,7 @@ int main(int argc, char const *argv[])
 	{
 		std::cout << "Cart Pole with DQN failed to converge in " << maxiter << " iterations." <<std::endl;
 	}
+	std::cout << "Time take is  " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
+
 	return 0;
 }
